@@ -1,0 +1,10 @@
+{
+	"name": "hisa-nano-code-devcontainer",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"workspaceFolder": "/hisa-nano-code",
+	"remoteUser": "vscode",
+	"mounts": ["source=${localWorkspaceFolder},target=/hisa-nano-code,type=bind"],
+	"postCreateCommand": "if [ ! -f package.json ]; then bun init -y; fi && bun install || true"
+}
