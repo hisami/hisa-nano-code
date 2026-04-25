@@ -17,4 +17,30 @@ async function callAnthropicAI(){
   console.log(data);
 }
 
-callAnthropicAI();
+async function callGoogleAI() {
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GOOGLE_API_KEY}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [
+              { text: "What is the capital of France?" }
+            ]
+          }
+        ]
+      })
+    }
+  );
+
+  const data = await response.json();
+  console.log(data.candidates[0].content.parts[0].text);
+}
+
+callGoogleAI();
+
+// callAnthropicAI();
