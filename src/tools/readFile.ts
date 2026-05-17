@@ -5,8 +5,8 @@ const WORKSPACE_ROOT = path.resolve(process.cwd(), "workspace");
 
 const MAX_FILE_SIZE = 100 * 1024; // 100KB
 
-async function readFileExecute(args: { filePath: string }): Promise<string> {
-	const absolutePath = path.resolve(WORKSPACE_ROOT, args.filePath);
+async function readFileExecute(args: { path: string }): Promise<string> {
+	const absolutePath = path.resolve(WORKSPACE_ROOT, args.path);
 
 	const allowedPrefix = WORKSPACE_ROOT + path.sep;
 	if (!absolutePath.startsWith(allowedPrefix)) {
@@ -45,12 +45,12 @@ export const readFile = {
 	parameters: {
 		type: "object",
 		properties: {
-			filePath: {
+			path: {
 				type: "string",
 				description: "ワークスペース内のファイルへのパス。",
 			},
 		},
-		required: ["filePath"],
+		required: ["path"],
 	},
 	execute: readFileExecute,
 };
