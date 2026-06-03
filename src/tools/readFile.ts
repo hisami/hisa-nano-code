@@ -1,12 +1,13 @@
 import * as fs from "fs/promises";
 import * as path from "path";
+import type { Tool } from "./../types";
 
 const WORKSPACE_ROOT = path.resolve(process.cwd(), "workspace");
 
 const MAX_FILE_SIZE = 100 * 1024; // 100KB
 
-async function readFileExecute(args: { path: string }): Promise<string> {
-	const absolutePath = path.resolve(WORKSPACE_ROOT, args.path);
+async function readFileExecute(args: Record<string, unknown>): Promise<string> {
+	const absolutePath = path.resolve(WORKSPACE_ROOT, args.path as string);
 
 	const allowedPrefix = WORKSPACE_ROOT + path.sep;
 	if (!absolutePath.startsWith(allowedPrefix)) {
@@ -38,7 +39,7 @@ async function readFileExecute(args: { path: string }): Promise<string> {
 	return content;
 }
 
-export const readFile = {
+export const readFile: Tool = {
 	name: "readFile",
 	description:
 		"ワークスペース内の指定されたパスのファイル内容を文字列として読み込む。ファイルが存在しない場合はエラーを返す。100KBを超える巨大ファイルは読み込めない。相対パスまたは絶対パスで指定できるが、ワークスペース外のファイルにはアクセスできない。",
@@ -52,5 +53,6 @@ export const readFile = {
 		},
 		required: ["path"],
 	},
+	needsApproval: false,
 	execute: readFileExecute,
 };
