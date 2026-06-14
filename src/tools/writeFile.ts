@@ -1,13 +1,13 @@
 import * as fs from "fs/promises";
 import * as path from "path";
+import type { Tool } from "./../types";
 
 const WORKSPACE_ROOT = path.resolve(process.cwd(), "./workspace");
 
-async function writeFileExecute(args: {
-	path: string;
-	content: string;
-}): Promise<string> {
-	const absolutePath = path.resolve(WORKSPACE_ROOT, args.path);
+async function writeFileExecute(
+	args: Record<string, unknown>,
+): Promise<string> {
+	const absolutePath = path.resolve(WORKSPACE_ROOT, args.path as string);
 
 	const allowedPrefix = WORKSPACE_ROOT + path.sep;
 	if (
@@ -28,12 +28,12 @@ async function writeFileExecute(args: {
 		// ファイルが存在しない場合はバックアップ不要
 	}
 
-	await fs.writeFile(absolutePath, args.content, "utf-8");
+	await fs.writeFile(absolutePath, args.content as string, "utf-8");
 
 	return `ファイルを書き込みました: ${args.path}`;
 }
 
-export const writeFile = {
+export const writeFile: Tool = {
 	name: "writeFile",
 	description:
 		"指定されたパスにファイルを作成または上書きする。既存ファイルは自動的にバックアップされる。ディレクトリが存在しない場合は自動的に作成される。",

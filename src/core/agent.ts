@@ -125,6 +125,7 @@ export class Agent {
 						content: result,
 					});
 				}
+				continue;
 			}
 			// ツール呼び出しがない場合は完了
 			messages.push({ role: "assistant", content: response.text || "" });

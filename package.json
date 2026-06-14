@@ -1,16 +1,19 @@
 {
-  "name": "/hisa-nano-code",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@biomejs/biome": "^2.4.13",
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "@google/genai": "^1.51.0"
-  }
+	"name": "/hisa-nano-code",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"agent": "bun run bin/cli.ts"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.13",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"@google/genai": "^1.51.0"
+	}
 }
