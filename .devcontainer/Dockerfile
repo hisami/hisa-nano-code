@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     nano  \
     bubblewrap \
+    gh \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # 非rootユーザーを作成
