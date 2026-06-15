@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     nano  \
     bubblewrap \
     gh \
+    openssh-client \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # 非rootユーザーを作成
